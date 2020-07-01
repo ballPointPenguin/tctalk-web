@@ -1,4 +1,5 @@
 import React from "react"
+import ReactMarkdown from "react-markdown"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
@@ -10,7 +11,7 @@ const ResourcesPage = ({ data: { strapiResources } }) => (
     <h1>{strapiResources.title}</h1>
     {strapiResources.content.map(contentblock => (
       <React.Fragment key={contentblock.id}>
-        <p>{contentblock.text}</p>
+        <ReactMarkdown source={contentblock.text} />
       </React.Fragment>
     ))}
   </Layout>

@@ -1,4 +1,5 @@
 import React from "react"
+import ReactMarkdown from "react-markdown"
 import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
@@ -11,7 +12,7 @@ const HomePage = ({ data: { strapiHome } }) => (
     <h2>{strapiHome.subtitle}</h2>
     {strapiHome.content.map(contentblock => (
       <React.Fragment key={contentblock.id}>
-        <p>{contentblock.text}</p>
+        <ReactMarkdown source={contentblock.text} />
         <h3>
           <Link to="/conversations">Join the conversation</Link>
         </h3>
