@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 
 const HomePage = ({ data: { strapiHome } }) => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title={strapiHome.title} />
     <h1>{strapiHome.title}</h1>
     <h2>{strapiHome.subtitle}</h2>
     {strapiHome.content.map(contentblock => (

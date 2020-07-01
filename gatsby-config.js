@@ -38,7 +38,7 @@ module.exports = {
       options: {
         apiURL: process.env.API_URL || `http://localhost:1337`,
         queryLimit: 1000,
-        singleTypes: [`home`, `about`],
+        singleTypes: [`home`, `about`, `conversations`],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

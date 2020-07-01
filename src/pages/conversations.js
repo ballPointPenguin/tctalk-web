@@ -4,18 +4,14 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const AboutPage = ({ data: { strapiAbout } }) => (
+const ConversationsPage = ({ data: { strapiConversations } }) => (
   <Layout>
-    <SEO title={strapiAbout.title} />
-    <h1>{strapiAbout.title}</h1>
-    <h2>{strapiAbout.subtitle}</h2>
-    {strapiAbout.content.map(contentblock => (
+    <SEO title={strapiConversations.title} />
+    <h1>{strapiConversations.title}</h1>
+    <h2>{strapiConversations.subtitle}</h2>
+    {strapiConversations.content.map(contentblock => (
       <React.Fragment key={contentblock.id}>
         <p>{contentblock.text}</p>
-        <img
-          src={contentblock.image.publicURL}
-          alt={contentblock.imageAltText}
-        />
       </React.Fragment>
     ))}
     <Link to="/">&larr; back to home</Link>
@@ -23,8 +19,8 @@ const AboutPage = ({ data: { strapiAbout } }) => (
 )
 
 export const query = graphql`
-  query AboutPageQuery {
-    strapiAbout {
+  query ConversationsPageQuery {
+    strapiConversations {
       createdAt
       strapiId
       subtitle
@@ -32,12 +28,9 @@ export const query = graphql`
       content {
         id
         text
-        image {
-          publicURL
-        }
       }
     }
   }
 `
 
-export default AboutPage
+export default ConversationsPage
