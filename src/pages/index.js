@@ -12,15 +12,15 @@ const HomePage = ({ data: { strapiHome } }) => (
     {strapiHome.content.map(contentblock => (
       <React.Fragment key={contentblock.id}>
         <p>{contentblock.text}</p>
+        <h3>
+          <Link to="/conversations">Join the conversation</Link>
+        </h3>
         <img
           src={contentblock.image.publicURL}
           alt={contentblock.imageAltText}
         />
       </React.Fragment>
     ))}
-    <h3>
-      <Link to="/conversations">Join the conversation</Link>
-    </h3>
   </Layout>
 )
 

@@ -5,24 +5,17 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
+import Helmet from "react-helmet"
 import PropTypes from "prop-types"
 import React from "react"
 import { Global, css } from "@emotion/core"
-import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
+import useSiteMetadata from "../hooks/use-sitemetadata"
 import "./layout.css"
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+  const { title, description } = useSiteMetadata()
 
   return (
     <>
@@ -77,7 +70,12 @@ const Layout = ({ children }) => {
           }
         `}
       />
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Helmet>
+        <html lang="en" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </Helmet>
+      <Header siteTitle={title} />
       <main
         css={css`
           margin: 2rem auto;
