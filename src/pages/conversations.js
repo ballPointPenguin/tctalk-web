@@ -18,11 +18,9 @@ const ConversationsPage = ({ data: { strapiConversations } }) => {
           <ReactMarkdown source={contentblock.text} />
         </React.Fragment>
       ))}
-      <div
-        className="polis"
-        data-page_id="PAGE_ID"
-        data-site_id="polis_site_id_fXsDvPcuW1QhMPz2oV"
-      ></div>
+      {strapiConversations.polis_conversations.map(({ polisId }) => (
+        <div className="polis" data-conversation_id={polisId}></div>
+      ))}
     </Layout>
   )
 }
@@ -37,6 +35,9 @@ export const query = graphql`
       content {
         id
         text
+      }
+      polis_conversations {
+        polisId
       }
     }
   }
