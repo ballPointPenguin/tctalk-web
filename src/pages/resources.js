@@ -4,12 +4,11 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const ConversationsPage = ({ data: { strapiConversations } }) => (
+const ResourcesPage = ({ data: { strapiResources } }) => (
   <Layout>
-    <SEO title={strapiConversations.title} />
-    <h1>{strapiConversations.title}</h1>
-    <h2>{strapiConversations.subtitle}</h2>
-    {strapiConversations.content.map(contentblock => (
+    <SEO title={strapiResources.title} />
+    <h1>{strapiResources.title}</h1>
+    {strapiResources.content.map(contentblock => (
       <React.Fragment key={contentblock.id}>
         <p>{contentblock.text}</p>
       </React.Fragment>
@@ -18,11 +17,10 @@ const ConversationsPage = ({ data: { strapiConversations } }) => (
 )
 
 export const query = graphql`
-  query ConversationsPageQuery {
-    strapiConversations {
+  query ResourcesPageQuery {
+    strapiResources {
       createdAt
       strapiId
-      subtitle
       title
       content {
         id
@@ -32,4 +30,4 @@ export const query = graphql`
   }
 `
 
-export default ConversationsPage
+export default ResourcesPage

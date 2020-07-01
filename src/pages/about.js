@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -18,7 +18,6 @@ const AboutPage = ({ data: { strapiAbout } }) => (
         />
       </React.Fragment>
     ))}
-    <Link to="/">&larr; back to home</Link>
   </Layout>
 )
 

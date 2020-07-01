@@ -27,6 +27,14 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        defaultLayouts: {
+          default: require.resolve("./src/components/layout.js"),
+        },
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
@@ -38,7 +46,7 @@ module.exports = {
       options: {
         apiURL: process.env.API_URL || `http://localhost:1337`,
         queryLimit: 1000,
-        singleTypes: [`home`, `about`, `conversations`],
+        singleTypes: [`home`, `about`, `conversations`, `resources`],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
