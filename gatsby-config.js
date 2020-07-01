@@ -9,6 +9,7 @@ module.exports = {
     author: `Benjamin Rosas <hello@tctalk.us>`,
   },
   plugins: [
+    `gatsby-plugin-emotion`,
     `gatsby-plugin-eslint`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sharp`,
