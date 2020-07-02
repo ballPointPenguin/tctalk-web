@@ -25,7 +25,7 @@
 
     - name: build docker image
       docker_image:
-        force_source: yes
+        #force_source: yes
         name: tctalk-web
         source: build
         build:
