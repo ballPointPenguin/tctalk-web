@@ -1,0 +1,49 @@
+---
+- name: web application deploy
+  hosts: west
+  remote_user: hank
+  vars:
+    branch: prod
+    homedir: "/home/{{ user }}"
+    org: ballPointPenguin
+    repo: tctalk-web
+    user: hank
+    workdir: "{{ homedir }}/code/src/github.com/{{ org }}/{{ repo }}"
+
+  tasks:
+    - name: ensure workdir parent dir is present
+      file:
+        path: "{{ homedir }}/code/src/github.com/{{ org }}"
+        state: directory
+
+    - name: clone or update repo
+      git:
+        dest: "{{ workdir }}"
+        repo: "https://github.com/{{ org }}/{{ repo }}.git"
+        update: yes
+        version: "{{ branch }}"
+
+    - name: build docker image
+      docker_image:
+        force_source: yes
+        name: tctalk-web
+        source: build
+        build:
+          path: "{{ workdir }}"
+          pull: no
+          args:
+            API_URL: https://api.tctalk.us
+
+    - name: run docker container
+      docker_container:
+        expose: 80
+        image: tctalk-web
+        name: tctalk-web
+        recreate: yes
+        restart: yes
+        restart_policy: always
+        env:
+          LETSENCRYPT_HOST: "tctalk.us,www.tctalk.us"
+          PORT: "80"
+          VIRTUAL_HOST: "tctalk.us,www.tctalk.us"
+
