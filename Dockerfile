@@ -3,7 +3,8 @@ FROM node:lts-alpine as build
 
 MAINTAINER Benjamin Rosas <ben@aliencyb.org>
 
-ENV API_URL https://api.tctalk.us
+ARG API_URL
+ENV API_URL=$API_URL
 ENV NODE_ENV production
 WORKDIR /app/
 
