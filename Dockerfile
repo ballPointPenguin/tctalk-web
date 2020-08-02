@@ -1,7 +1,7 @@
 # BUILD
 FROM node:lts-alpine as build
 
-MAINTAINER Benjamin Rosas <ben@aliencyb.org>
+LABEL maintainer="Benjamin Rosas <ben@aliencyb.org>"
 
 ARG API_URL
 ENV API_URL=$API_URL
