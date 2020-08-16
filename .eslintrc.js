@@ -1,15 +1,62 @@
 module.exports = {
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+    commonjs: true,
+    jest: true,
+  },
   extends: [
-    "eslint:recommended",
-    "eslint-config-react-app",
-    "plugin:prettier/recommended",
+    'react-app',
+    'standard',
+    'eslint:recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:prettier/recommended',
+    'plugin:react/recommended',
+    'prettier/babel',
+    'prettier/flowtype',
+    'prettier/react',
+    'prettier/standard',
   ],
   globals: {
-    __PATH_PREFIX__: true,
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+    document: 'readonly',
+    navigator: 'readonly',
+    window: 'readonly',
   },
-  parser: "babel-eslint",
-  plugins: ["graphql", "prettier"],
+  ignorePatterns: ['public'],
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
+  plugins: [
+    'flowtype',
+    'graphql',
+    'import',
+    'jsx-a11y',
+    'node',
+    'prettier',
+    'promise',
+    'react',
+    'react-hooks',
+    'standard',
+  ],
   rules: {
-    strict: 0,
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+      },
+    ],
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 }
