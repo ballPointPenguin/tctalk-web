@@ -6,24 +6,25 @@ import ContentBlock from '../components/content-block'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-const IndexPage = ({
+const Page = ({
   data: {
-    strapi: { home },
+    strapi: {
+      pages: [page = {}],
+    },
   },
 }) => (
   <Layout>
-    <SEO title={home.title} />
-    <h1>{home.title}</h1>
-    {home.content.map(block => (
+    <SEO title={page.title} />
+    {page.content.map(block => (
       <ContentBlock block={block} key={block.id} />
     ))}
   </Layout>
 )
 
 export const query = graphql`
-  query IndexPageQuery {
+  query HomePageQuery {
     strapi {
-      home {
+      pages(limit: 1, where: { title: "home" }) {
         title
         content {
           id
@@ -39,19 +40,12 @@ export const query = graphql`
   }
 `
 
-IndexPage.propTypes = {
+Page.propTypes = {
   data: PropTypes.exact({
     strapi: PropTypes.exact({
-      home: PropTypes.exact({
-        title: PropTypes.string,
-        content: PropTypes.arrayOf(
-          PropTypes.shape({
-            id: PropTypes.string,
-          })
-        ),
-      }),
+      pages: PropTypes.arrayOf(PropTypes.object).isRequired,
     }),
   }),
 }
 
-export default IndexPage
+export default Page

@@ -22,9 +22,9 @@ const Page = ({
 )
 
 export const query = graphql`
-  query ResourcesPageQuery {
+  query ArticlesPageQuery {
     strapi {
-      pages(limit: 1, where: { title: "resources" }) {
+      pages(limit: 1, where: { title: "articles" }) {
         title
         content {
           id

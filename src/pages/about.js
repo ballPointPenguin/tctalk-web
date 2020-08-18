@@ -1,43 +1,51 @@
-import React from "react"
-import ReactMarkdown from "react-markdown"
-import { graphql } from "gatsby"
+import PropTypes from 'prop-types'
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import ContentBlock from '../components/content-block'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 
-const AboutPage = ({ data: { strapiAbout } }) => (
+const Page = ({
+  data: {
+    strapi: {
+      pages: [page = {}],
+    },
+  },
+}) => (
   <Layout>
-    <SEO title={strapiAbout.title} />
-    <h1>{strapiAbout.title}</h1>
-    <h2>{strapiAbout.subtitle}</h2>
-    {strapiAbout.content.map(contentblock => (
-      <React.Fragment key={contentblock.id}>
-        <ReactMarkdown source={contentblock.text} />
-        <img
-          src={contentblock.image.publicURL}
-          alt={contentblock.imageAltText}
-        />
-      </React.Fragment>
+    <SEO title={page.title} />
+    {page.content.map(block => (
+      <ContentBlock block={block} key={block.id} />
     ))}
   </Layout>
 )
 
 export const query = graphql`
   query AboutPageQuery {
-    strapiAbout {
-      createdAt
-      strapiId
-      subtitle
-      title
-      content {
-        id
-        text
-        image {
-          publicURL
+    strapi {
+      pages(limit: 1, where: { title: "about" }) {
+        title
+        content {
+          id
+          text
+          image {
+            alternativeText
+            caption
+            url
+          }
         }
       }
     }
   }
 `
 
-export default AboutPage
+Page.propTypes = {
+  data: PropTypes.exact({
+    strapi: PropTypes.exact({
+      pages: PropTypes.arrayOf(PropTypes.object).isRequired,
+    }),
+  }),
+}
+
+export default Page

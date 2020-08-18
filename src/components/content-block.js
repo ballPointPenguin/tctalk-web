@@ -10,11 +10,15 @@ function imgSrc({ image: { url } }) {
 }
 
 const ContentBlock = ({ block }) => (
-  <React.Fragment>
+  <>
     <ReactMarkdown source={block.text} />
-    <img src={imgSrc(block)} alt={block.image.alternativeText} />
-    <p>{block.image.caption}</p>
-  </React.Fragment>
+    {block.image && (
+      <>
+        <img src={imgSrc(block)} alt={block.image.alternativeText} />
+        <p>{block.image.caption}</p>
+      </>
+    )}
+  </>
 )
 
 ContentBlock.propTypes = {
