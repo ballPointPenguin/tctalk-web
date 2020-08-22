@@ -33,6 +33,13 @@ export const query = graphql`
             alternativeText
             caption
             url
+            imageFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }

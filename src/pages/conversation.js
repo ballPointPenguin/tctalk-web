@@ -10,7 +10,7 @@ import useScript from '../hooks/use-script'
 const Page = ({
   data: {
     strapi: {
-      conversationPages: [page = {}],
+      pages: [page = {}],
     },
   },
 }) => {
@@ -29,12 +29,9 @@ const Page = ({
         <ContentBlock block={block} key={block.id} />
       ))}
 
-      {polisConversations.map(({ id, polisId }) => {
-        console.log({ polisId })
-        return (
-          <div className="polis" data-conversation_id={polisId} key={id}></div>
-        )
-      })}
+      {polisConversations.map(({ id, polisId }) => (
+        <div className="polis" data-conversation_id={polisId} key={id}></div>
+      ))}
     </Layout>
   )
 }
@@ -42,7 +39,7 @@ const Page = ({
 export const query = graphql`
   query ConversationPageQuery {
     strapi {
-      conversationPages(limit: 1, where: { title: "conversation" }) {
+      pages(limit: 1, where: { title: "conversation" }) {
         title
         polis_conversations {
           id
@@ -55,6 +52,13 @@ export const query = graphql`
             alternativeText
             caption
             url
+            imageFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
@@ -65,7 +69,7 @@ export const query = graphql`
 Page.propTypes = {
   data: PropTypes.exact({
     strapi: PropTypes.exact({
-      conversationPages: PropTypes.arrayOf(
+      pages: PropTypes.arrayOf(
         PropTypes.exact({
           title: PropTypes.string,
           polis_conversations: PropTypes.array,

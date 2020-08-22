@@ -1,25 +1,24 @@
+import Img from 'gatsby-image'
 import React from 'react'
 import PropTypes from 'prop-types'
 import ReactMarkdown from 'react-markdown'
 
-function imgSrc({ image: { url } }) {
-  console.log(process.env.API_URL)
-  const imgsrc = process.env.API_URL + url
-  console.log(imgsrc)
-  return imgsrc
+const ContentBlock = ({ block: { text, image } }) => {
+  return (
+    <>
+      <ReactMarkdown source={text} />
+      {image?.imageFile && (
+        <>
+          <Img
+            fluid={image.imageFile.childImageSharp.fluid}
+            alt={image.alternativeText}
+          />
+          <p>{image.caption}</p>
+        </>
+      )}
+    </>
+  )
 }
-
-const ContentBlock = ({ block }) => (
-  <>
-    <ReactMarkdown source={block.text} />
-    {block.image && (
-      <>
-        <img src={imgSrc(block)} alt={block.image.alternativeText} />
-        <p>{block.image.caption}</p>
-      </>
-    )}
-  </>
-)
 
 ContentBlock.propTypes = {
   block: PropTypes.exact({
@@ -28,6 +27,7 @@ ContentBlock.propTypes = {
     image: PropTypes.exact({
       alternativeText: PropTypes.string,
       caption: PropTypes.string,
+      imageFile: PropTypes.object,
       url: PropTypes.string,
     }),
   }),
