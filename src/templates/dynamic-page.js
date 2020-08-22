@@ -9,34 +9,22 @@ import SEO from '../components/seo'
 const Page = ({
   data: {
     strapi: {
-      homePages: [homePage],
-      pages,
+      pages: [page = {}],
     },
   },
 }) => (
   <Layout>
-    <SEO title={homePage.title} />
-    {pages.map(page => (
-      <React.Fragment key={page.id}>
-        <h3>{page.title}</h3>
-        <h4>{page.slug}</h4>
-      </React.Fragment>
-    ))}
-    {homePage.content.map(block => (
+    <SEO title={page.title} />
+    {page.content.map(block => (
       <ContentBlock block={block} key={block.id} />
     ))}
   </Layout>
 )
 
 export const query = graphql`
-  query IndexPageQuery {
+  query($slug: String!) {
     strapi {
-      pages {
-        id
-        slug
-        title
-      }
-      homePages: pages(limit: 1, where: { slug: "home" }) {
+      pages(limit: 1, where: { slug: $slug }) {
         title
         content {
           id
@@ -62,7 +50,6 @@ export const query = graphql`
 Page.propTypes = {
   data: PropTypes.exact({
     strapi: PropTypes.exact({
-      homePages: PropTypes.arrayOf(PropTypes.object).isRequired,
       pages: PropTypes.arrayOf(PropTypes.object).isRequired,
     }),
   }),
