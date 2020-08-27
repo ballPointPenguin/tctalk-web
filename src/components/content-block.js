@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ReactMarkdown from 'react-markdown'
 
-const ContentBlock = ({ block: { text, image } }) => {
+const ContentBlock = ({ content: { text, image } }) => {
   return (
     <>
       <ReactMarkdown source={text} />
@@ -21,7 +21,7 @@ const ContentBlock = ({ block: { text, image } }) => {
 }
 
 ContentBlock.propTypes = {
-  block: PropTypes.exact({
+  content: PropTypes.exact({
     id: PropTypes.string,
     text: PropTypes.string,
     image: PropTypes.exact({

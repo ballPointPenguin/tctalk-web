@@ -15,8 +15,8 @@ const Page = ({
 }) => (
   <Layout>
     <SEO title={page.title} />
-    {page.content.map(block => (
-      <ContentBlock block={block} key={block.id} />
+    {page.content.map(content => (
+      <ContentBlock content={content} key={content.id} />
     ))}
   </Layout>
 )

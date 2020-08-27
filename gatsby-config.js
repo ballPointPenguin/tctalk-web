@@ -2,9 +2,11 @@ module.exports = {
   siteMetadata: {
     title: `Twin Cities Talk`,
     description: `Conversations about Community, Police, and Policy`,
-    author: `Benjamin Rosas <ben@aliencyb.org>`,
+    author: `Benjamin Rosas <hello@tctalk.us>`,
   },
   plugins: [
+    `gatsby-plugin-emotion`,
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
@@ -39,14 +41,6 @@ module.exports = {
         url: `${process.env.API_URL || 'http://localhost:1337'}/graphql`,
       },
     },
-    // {
-    //   resolve: `gatsby-source-strapi`,
-    //   options: {
-    //     apiURL: process.env.API_URL || `http://localhost:1337`,
-    //     //queryLimit: 100, // default is 100
-    //     singleTypes: ["about", "articles", "conversation", "home", "resources"],
-    //   },
-    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

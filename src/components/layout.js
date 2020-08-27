@@ -1,97 +1,57 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
+import { Global } from '@emotion/core'
+import { useStaticQuery, graphql } from 'gatsby'
+import PropTypes from 'prop-types'
+import React from 'react'
+import tw, { css, styled, theme } from 'twin.macro'
 
-import Helmet from "react-helmet"
-import PropTypes from "prop-types"
-import React from "react"
-import { Global, css } from "@emotion/core"
+import Header from './header'
+import './layout.css'
 
-import Header from "./header"
-import useSiteMetadata from "../hooks/use-sitemetadata"
-import "./layout.css"
+const globalStyles = {}
+
+const linearGradientStyle = css`
+  background: linear-gradient(
+    ${theme`colors.purple.200`},
+    ${theme`colors.blue.200`},
+    ${theme`colors.yellow.100`},
+    ${theme`colors.orange.100`}
+  );
+`
+
+const Background = styled.div`
+  ${tw`min-h-screen`}
+  ${linearGradientStyle}
+`
+
+const MainContainer = styled.main`
+  ${tw`container mx-auto`}
+`
 
 const Layout = ({ children }) => {
-  const { title, description } = useSiteMetadata()
+  const data = useStaticQuery(graphql`
+    query SiteTitleQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `)
 
   return (
     <>
-      <Global
-        styles={css`
-          * {
-            box-sizing: border-box;
-            margin: 0;
-          }
-
-          /* More info: https://bit.ly/2PsCnzk */
-          * + * {
-            margin-top: 1rem;
-          }
-
-          html,
-          body {
-            margin: 0;
-            color: #555;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-              Helvetica, Arial, sans-serif, "Apple Color Emoji",
-              "Segoe UI Emoji", "Segoe UI Symbol";
-            font-size: 18px;
-            line-height: 1.4;
-
-            /* remove margin for the main div that Gatsby mounts into */
-            > div {
-              margin-top: 0;
-            }
-          }
-
-          h1,
-          h2,
-          h3,
-          h4,
-          h5,
-          h6 {
-            color: #222;
-            line-height: 1.1;
-
-            + * {
-              margin-top: 0.5rem;
-            }
-          }
-
-          strong {
-            color: #222;
-          }
-
-          li {
-            margin-top: 0.25rem;
-          }
-        `}
-      />
-      <Helmet>
-        <html lang="en" />
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Helmet>
-      <Header siteTitle={title} />
-      <main
-        css={css`
-          margin: 2rem auto;
-          max-width: 768px;
-        `}
-      >
-        {children}
-      </main>
-      <footer
-        css={css`
-          margin: 2rem auto;
-          max-width: 768px;
-        `}
-      >
-        © {new Date().getFullYear()} TC Talk
-      </footer>
+      <Global styles={globalStyles} />
+      <Background>
+        <Header siteTitle={data.site.siteMetadata.title} />
+        <div>
+          <MainContainer>{children}</MainContainer>
+          <footer>
+            © {new Date().getFullYear()}, Built with
+            {` `}
+            <a href="https://www.gatsbyjs.org">Gatsby</a>
+          </footer>
+        </div>
+      </Background>
     </>
   )
 }

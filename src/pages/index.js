@@ -22,8 +22,8 @@ const Page = ({
         <h4>{page.slug}</h4>
       </React.Fragment>
     ))}
-    {homePage.content.map(block => (
-      <ContentBlock block={block} key={block.id} />
+    {homePage.content.map(content => (
+      <ContentBlock content={content} key={content.id} />
     ))}
   </Layout>
 )
