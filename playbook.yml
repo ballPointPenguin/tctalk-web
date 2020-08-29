@@ -1,13 +1,13 @@
 ---
 - name: web application deploy
-  hosts: west
-  remote_user: hank
+  hosts: east
+  remote_user: luis
   vars:
     branch: prod
     homedir: "/home/{{ user }}"
     org: ballPointPenguin
     repo: tctalk-web
-    user: hank
+    user: luis
     workdir: "{{ homedir }}/code/src/github.com/{{ org }}/{{ repo }}"
 
   tasks:
@@ -46,4 +46,3 @@
           LETSENCRYPT_HOST: "tctalk.us,www.tctalk.us"
           PORT: "80"
           VIRTUAL_HOST: "tctalk.us,www.tctalk.us"
-
