@@ -25,10 +25,11 @@
 
     - name: build docker image
       docker_image:
-        #force_source: yes
+        force_source: yes
         name: tctalk-web
         source: build
         build:
+          nocache: yes
           path: "{{ workdir }}"
           pull: no
           args:
@@ -39,7 +40,7 @@
         expose: 80
         image: tctalk-web
         name: tctalk-web
-        #recreate: yes
+        recreate: yes
         restart: yes
         restart_policy: always
         env:

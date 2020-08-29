@@ -1,5 +1,5 @@
-# BUILD
-FROM node:lts-alpine as build
+# PRE-BUILD
+FROM node:lts-alpine as pre-build
 
 LABEL maintainer="Benjamin Rosas <ben@aliencyb.org>"
 
@@ -19,10 +19,11 @@ RUN npm ci --silent
 
 RUN apk del .build
 
+# BUILD
+FROM pre-build as build
 COPY . .
 
 RUN gatsby build
-
 
 # RUN
 FROM nginx:alpine
