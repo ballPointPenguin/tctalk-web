@@ -11,6 +11,10 @@
     workdir: "{{ homedir }}/code/src/github.com/{{ org }}/{{ repo }}"
 
   tasks:
+    - name: register timestamp
+      shell: date '+%Y%m%d%H%M%S'
+      register: timestamp
+
     - name: ensure workdir parent dir is present
       file:
         path: "{{ homedir }}/code/src/github.com/{{ org }}"
@@ -29,11 +33,12 @@
         name: tctalk-web
         source: build
         build:
-          nocache: yes
+          # nocache: yes
           path: "{{ workdir }}"
           pull: no
           args:
             API_URL: https://api.tctalk.us
+            BUILD_DATE: "{{ timestamp.stdout }}"
 
     - name: run docker container
       docker_container:
