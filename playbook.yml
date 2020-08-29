@@ -39,10 +39,11 @@
         expose: 80
         image: tctalk-web
         name: tctalk-web
-        recreate: yes
+        #recreate: yes
         restart: yes
         restart_policy: always
         env:
+          HSTS: "off"
           LETSENCRYPT_HOST: "tctalk.us,www.tctalk.us"
           PORT: "80"
           VIRTUAL_HOST: "tctalk.us,www.tctalk.us"
