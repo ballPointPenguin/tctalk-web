@@ -7,7 +7,7 @@ const ContentBlock = ({ content: { text, image } }) => {
   return (
     <>
       <ReactMarkdown source={text} />
-      {image?.imageFile && (
+      {image && (
         <>
           <Img
             fluid={image.imageFile.childImageSharp.fluid}

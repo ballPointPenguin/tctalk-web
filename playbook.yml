@@ -43,6 +43,7 @@
         restart: yes
         restart_policy: always
         env:
+          API_URL: "https://api.tctalk.us"
           HSTS: "off"
           LETSENCRYPT_HOST: "tctalk.us,www.tctalk.us"
           PORT: "80"

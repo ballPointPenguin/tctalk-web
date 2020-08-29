@@ -15,7 +15,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-  result.data?.strapi?.pages?.forEach(({ slug }) => {
+  result.data.strapi.pages.forEach(({ slug }) => {
     createPage({
       path: slug,
       component: path.resolve(`./src/templates/dynamic-page.js`),

@@ -28,4 +28,3 @@ RUN gatsby build
 FROM nginx:alpine
 
 COPY --from=build /app/public /usr/share/nginx/html
-
