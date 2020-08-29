@@ -23,6 +23,8 @@ RUN apk del .build
 FROM pre-build as build
 COPY . .
 
+ARG BUILD_DATE
+
 RUN gatsby build
 
 # RUN
