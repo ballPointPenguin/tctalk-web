@@ -2,7 +2,10 @@ import React from 'react'
 import tw from 'twin.macro'
 
 const Footer = () => (
-  <footer tw="border-t border-indigo-400 bg-yellow-300 bottom-0 w-full text-right flex flex-col sm:flex-row py-1 justify-end">
+  <footer
+    tw="border-t border-indigo-400 bg-pink-200 bottom-0 w-full
+    text-right flex flex-col sm:flex-row py-1 justify-end"
+  >
     <span tw="mx-4">
       © {new Date().getFullYear()}, Built with
       {` `}
