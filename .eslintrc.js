@@ -47,6 +47,7 @@ module.exports = {
     'standard',
   ],
   rules: {
+    'no-unused-vars': ['error', { varsIgnorePattern: 'tw' }],
     'prettier/prettier': [
       'error',
       {

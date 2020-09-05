@@ -3,9 +3,8 @@ import { useStaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 import tw, { css, styled, theme } from 'twin.macro'
-
+import Footer from './footer'
 import Header from './header'
-import './layout.css'
 
 const globalStyles = {}
 
@@ -19,12 +18,12 @@ const linearGradientStyle = css`
 `
 
 const Background = styled.div`
-  ${tw`min-h-screen`}
+  ${tw`min-h-screen border-2 border-red-200 flex flex-col`}
   ${linearGradientStyle}
 `
 
 const MainContainer = styled.main`
-  ${tw`container mx-auto`}
+  ${tw`container mx-auto flex-grow`}
 `
 
 const Layout = ({ children }) => {
@@ -43,14 +42,8 @@ const Layout = ({ children }) => {
       <Global styles={globalStyles} />
       <Background>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <div>
-          <MainContainer>{children}</MainContainer>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
-        </div>
+        <MainContainer>{children}</MainContainer>
+        <Footer />
       </Background>
     </>
   )
