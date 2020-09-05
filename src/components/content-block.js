@@ -2,11 +2,12 @@ import Img from 'gatsby-image'
 import React from 'react'
 import PropTypes from 'prop-types'
 import ReactMarkdown from 'react-markdown'
+import tw from 'twin.macro'
 
 const ContentBlock = ({ content: { text, image } }) => {
   return (
     <>
-      <ReactMarkdown source={text} />
+      <ReactMarkdown source={text} tw="py-6" />
       {image && (
         <>
           <Img

@@ -6,13 +6,23 @@ const Footer = () => (
     <span tw="mx-4">
       © {new Date().getFullYear()}, Built with
       {` `}
-      <a href="https://www.gatsbyjs.org" tw="text-indigo-700">
+      <a
+        href="https://www.gatsbyjs.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        tw="text-indigo-700"
+      >
         Gatsby
       </a>
     </span>
     <span tw="mx-4">
       Powered by {` `}
-      <a href="https://aliencyb.org" tw="text-indigo-700">
+      <a
+        href="https://aliencyb.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        tw="text-indigo-700"
+      >
         AlienCyborg
       </a>
     </span>
