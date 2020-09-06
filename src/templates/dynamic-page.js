@@ -5,6 +5,7 @@ import { graphql } from 'gatsby'
 import ContentBlock from '../components/content-block'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+import useScript from '../hooks/use-script'
 
 const Page = ({
   data: {
@@ -12,15 +13,31 @@ const Page = ({
       pages: [page = {}],
     },
   },
-}) => (
-  <Layout>
-    <SEO title={page.title} />
+}) => {
+  useScript('https://pol.is/embed.js')
 
-    {page.content.map(content => (
-      <ContentBlock content={content} key={content.id} />
-    ))}
-  </Layout>
-)
+  const { conversations = [] } = page
+
+  return (
+    <Layout>
+      <SEO title={page.title} />
+
+      {page.content.map(content => (
+        <ContentBlock content={content} key={content.id} />
+      ))}
+      {conversations.map(({ name, polisId }) => (
+        <>
+          <h3>{name}</h3>
+          <div
+            className="polis"
+            data-conversation_id={polisId}
+            key={polisId}
+          ></div>
+        </>
+      ))}
+    </Layout>
+  )
+}
 
 export const query = graphql`
   query($slug: String!) {
@@ -42,6 +59,10 @@ export const query = graphql`
               }
             }
           }
+        }
+        conversations: polis_conversations {
+          name
+          polisId
         }
       }
     }
