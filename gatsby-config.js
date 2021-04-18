@@ -1,10 +1,19 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
- */
+require('dotenv').config({
+  path: '.env',
+})
 
+console.log('$$$ TYPEKIT_ID !!!', process.env.TYPEKIT_ID)
 module.exports = {
   /* Your site config here */
-  plugins: [],
+  plugins: [
+    'gatsby-plugin-postcss',
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        typekit: {
+          id: process.env.TYPEKIT_ID,
+        },
+      },
+    },
+  ],
 }
