@@ -6,11 +6,13 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
+    "clean": "gatsby clean",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
+    "start": "npm run develop",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
@@ -19,7 +21,16 @@
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "prettier": "2.2.1"
+    "@imaginary-cloud/eslint-config-react": "^1.0.1",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "prettier": "^2.2.1"
   },
   "repository": {
     "type": "git",
