@@ -1,0 +1,3 @@
+.tc-gradient {
+  @apply bg-gradient-to-b from-purple-300 via-blue-300 to-yellow-200;
+}

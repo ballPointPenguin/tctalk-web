@@ -1,17 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-html {
-  background-color: lavenderblush;
-}
+/* My custom stylesheets */
+@import './colors.css';
+@import './fonts.css';
+@import './typography.css';
 
-p {
-  color: maroon;
-}
-
-.birra {
-  font-family: birra-2, serif;
-  font-weight: 700;
-  font-style: normal;
-}
+/* Pages and components */
+@import './layout.css';
+@import './home.css';

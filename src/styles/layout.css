@@ -1,0 +1,9 @@
+#layout {
+  @apply flex flex-col min-h-screen border-2 border-red-200;
+  @apply tc-gradient;
+
+  & .main {
+    @apply container flex-grow mx-auto;
+    @apply font-body;
+  }
+}
