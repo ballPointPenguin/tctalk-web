@@ -10,4 +10,5 @@
 
 /* Pages and components */
 @import './layout.css';
+@import './footer.css';
 @import './home.css';

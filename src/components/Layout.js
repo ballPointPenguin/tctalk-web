@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import Header from './header'
-import Footer from './footer'
+import Header from './Header'
+import Footer from './Footer'
 
 const Layout = ({ children }) => (
   <div id="layout">
@@ -12,7 +12,10 @@ const Layout = ({ children }) => (
 )
 
 Layout.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element,
+  ]),
 }
 
 export default Layout

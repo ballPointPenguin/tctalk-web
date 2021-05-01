@@ -1,0 +1,12 @@
+#footer {
+  @apply sm:flex-row bottom-0 flex flex-col justify-end w-full py-1 text-right;
+  @apply bg-pink-200 border-t border-indigo-400;
+
+  & span {
+    @apply mx-4;
+  }
+
+  & a {
+    @apply text-indigo-700;
+  }
+}
